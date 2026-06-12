@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: pigment-connect
+    runtime: node
+    plan: starter            # smallest paid plan — required for a persistent disk
+    region: oregon
+    buildCommand: npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      - key: DATA_DIR
+        value: /data          # mount path of the persistent disk below
+      - key: JWT_SECRET
+        generateValue: true   # Render generates a strong secret once and keeps it
+    disk:
+      name: pigment-data
+      mountPath: /data        # SQLite DB + JWT secret live here, survive redeploys
+      sizeGB: 1

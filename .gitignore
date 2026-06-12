@@ -1,0 +1,10 @@
+node_modules/
+dist/
+client/dist/
+*.log
+.env
+
+# Local SQLite DB + JWT secret (dev). In production these live on the persistent disk.
+server/.jwt-secret
+server/pigment_integrations.db
+data/
