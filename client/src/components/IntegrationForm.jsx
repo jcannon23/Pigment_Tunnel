@@ -121,7 +121,7 @@ export default function IntegrationForm({ projectId, onClose, onSave, existingIn
                           ? 'border-indigo-400 dark:border-indigo-500 bg-indigo-50/50 dark:bg-indigo-950/30 shadow-sm'
                           : `border-gray-100 dark:border-gray-800 ${sys.cardBg} ${sys.cardBorder} hover:border-gray-200 dark:hover:border-gray-700 hover:shadow-sm`
                       }`}>
-                      <div className="mb-3">
+                      <div className="mb-3 inline-flex items-center justify-center w-12 h-12 rounded-lg bg-white ring-1 ring-gray-200 shadow-sm p-1.5">
                         <Logo size={32} />
                       </div>
                       <p className="font-semibold text-sm text-gray-900 dark:text-gray-100">{sys.name}</p>
@@ -152,7 +152,10 @@ export default function IntegrationForm({ projectId, onClose, onSave, existingIn
                 </div>
                 <div className={`border rounded-xl p-4 space-y-4 ${selectedSource.cardBg} ${selectedSource.cardBorder}`}>
                   <p className="text-xs font-semibold text-gray-700 dark:text-gray-300 flex items-center gap-2.5">
-                    <Logo size={20} /> {selectedSource.name} Connection Details
+                    <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-white ring-1 ring-gray-200 shadow-sm p-1">
+                      <Logo size={20} />
+                    </span>
+                    {selectedSource.name} Connection Details
                   </p>
                   {selectedSource.fields.map(field => (
                     <FieldInput key={field.key} field={field} value={sourceConfig[field.key]}

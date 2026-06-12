@@ -86,7 +86,7 @@ export default function IntegrationCard({ integration, projectId, onEdit, onDele
       <div className="px-5 py-4">
         <div className="flex items-start gap-4">
           {/* Logo */}
-          <div className={`shrink-0 w-10 h-10 rounded-xl border flex items-center justify-center overflow-hidden ${sys?.iconBg || 'bg-gray-50 dark:bg-gray-800'} ${sys?.cardBorder || 'border-gray-100 dark:border-gray-800'}`}>
+          <div className="shrink-0 w-10 h-10 rounded-xl bg-white ring-1 ring-gray-200 shadow-sm flex items-center justify-center overflow-hidden p-1.5">
             {Logo ? <Logo size={26} /> : <span className="text-lg">🔗</span>}
           </div>
 
