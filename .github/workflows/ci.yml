@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install server dependencies
+        run: npm install --prefix server
+
+      - name: Install client dependencies
+        run: npm install --prefix client
+
+      - name: Lint client
+        run: npm run lint --prefix client
+
+      - name: Build client
+        run: npm run build --prefix client
+
+      - name: Smoke-test server boot + health check
+        run: |
+          DATA_DIR="$RUNNER_TEMP/data" PORT=3001 node server/index.js &
+          SERVER_PID=$!
+          # Wait for the server to come up (up to ~10s)
+          for i in $(seq 1 20); do
+            if curl -sf http://localhost:3001/api/health > /dev/null; then
+              echo "Health check passed"
+              break
+            fi
+            sleep 0.5
+          done
+          curl -sf http://localhost:3001/api/health || (echo "Health check failed" && kill $SERVER_PID && exit 1)
+          kill $SERVER_PID

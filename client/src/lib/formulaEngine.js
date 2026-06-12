@@ -97,7 +97,6 @@ export function compileFormula(formula, columns) {
       default: throw new Error('Bad token');
     }
   }
-  // eslint-disable-next-line no-new-func
   const fn = new Function('row', 'F', `"use strict"; return (${js});`);
   return row => {
     try {
