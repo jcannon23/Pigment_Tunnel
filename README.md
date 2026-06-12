@@ -1,5 +1,7 @@
 # Pigment Connect
 
+[![CI](https://github.com/jcannon23/Pigment_Tunnel/actions/workflows/ci.yml/badge.svg)](https://github.com/jcannon23/Pigment_Tunnel/actions/workflows/ci.yml)
+
 A web app that lets non-technical users build API integrations from upstream
 systems — **Workday, SAP BDC, Oracle, and Snowflake** — into
 [Pigment](https://www.pigment.com/), with a built-in data staging and
